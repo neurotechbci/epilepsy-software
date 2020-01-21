@@ -40,7 +40,8 @@ def login():
 
         # Locate user
         user = User.query.filter_by(username=username).first()
-        
+        if not user:
+            return render_template( 'login/login.html', msg="User doesn't exist", form=login_form)
         # Check the password
         if user and verify_pass( password, user.password):
 
@@ -63,6 +64,7 @@ def create_user():
 
         username  = request.form['username']
         email     = request.form['email'   ]
+        id = request.form['id']
 
         user = User.query.filter_by(username=username).first()
         if user:

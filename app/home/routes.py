@@ -7,8 +7,9 @@ Copyright (c) 2019 - present AppSeed.us
 from app.home import blueprint
 from flask import render_template, redirect, url_for
 from flask_login import login_required, current_user
-from app import login_manager
+from app import login_manager,db
 from jinja2 import TemplateNotFound
+from app.home.models import Patient
 
 @blueprint.route('/index')
 @login_required
