@@ -14,8 +14,58 @@
 
   <div class="container-fluid mt--7">
     <div class="row">
-      
-      
+      <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Enter patient details</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form role="form" method="post" action="">
+                  {{form.hidden_tag()}}
+                <div class="modal-body mx-3">
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        {{form.id(placeholder="ID",class="form-control")}}
+                    </div>
+
+                    <div class="md-form mb-5">
+                        <i class="fas fa-user prefix grey-text"></i>
+                        {{form.username(placeholder="Name",class="form-control")}}
+                    </div>
+    
+                    <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        {{form.email(placeholder="Email",class="form-control")}}
+                    </div>
+    
+                    <div class="md-form mb-5">
+                        <i class="fas fa-tag prefix grey-text"></i>
+                        {{form.age(placeholder="Age",class="form-control")}}
+                    </div>
+    
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-unique" name="create_patient">Submit <i class="fas fa-paper-plane-o ml-1"></i></button>
+                </div>
+              </form>
+            </div>
+        </div>
+      </div>
+      <div class="card-header bg-transparent pb-5">
+
+        <div class="text-muted text-center mt-2 mb-3">
+        
+          {% if msg %}
+            <span class="text-danger">{{ msg | safe }}</span>
+          {% endif %}
+
+        </div>
+        
+      </div>
     </div>
     <div class="row mt-5">
       <div class="col-xl-8 mb-5 mb-xl-0">
@@ -23,6 +73,7 @@
           <div class="card-header border-0">
             <div class="row align-items-center">
               <div class="col">
+                <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalContactForm" style="float:right;">Add patient</a>
                 <h3 class="mb-0">Patients</h3>
               </div>
               
@@ -41,81 +92,23 @@
                 </tr>
               </thead>
               <tbody>
+                {% for patient in patients %}
                 <tr>
                   <th scope="row">
-                    /argon/
+                    {{patient.id}}
                   </th>
                   <td>
-                    4,569
+                    {{patient.username}}
                   </td>
                   <td>
-                    340
+                    {{patient.age}}
                   </td>
                   <td>
-                    <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+                    {{patient.visits}}
                   </td>
                   <td><a href="/patient_detials" class="btn btn-sm btn-primary">View</a></td>
                 </tr>
-                <tr>
-                  <th scope="row">
-                    /argon/index.html
-                  </th>
-                  <td>
-                    3,985
-                  </td>
-                  <td>
-                    319
-                  </td>
-                  <td>
-                    <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                  </td>
-                  <td><a href="/patient_detials" class="btn btn-sm btn-primary">View</a></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    /argon/charts.html
-                  </th>
-                  <td>
-                    3,513
-                  </td>
-                  <td>
-                    294
-                  </td>
-                  <td>
-                    <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                  </td>
-                  <td><a href="/patient_detials" class="btn btn-sm btn-primary">View</a></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    /argon/tables.html
-                  </th>
-                  <td>
-                    2,050
-                  </td>
-                  <td>
-                    147
-                  </td>
-                  <td>
-                    <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                  </td>
-                  <td><a href="/patient_detials" class="btn btn-sm btn-primary">View</a></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    /argon/profile.html
-                  </th>
-                  <td>
-                    1,795
-                  </td>
-                  <td>
-                    190
-                  </td>
-                  <td>
-                    <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                  </td>
-                  <td><a href="/patient_detials" class="btn btn-sm btn-primary">View</a></td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
