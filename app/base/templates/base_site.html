@@ -31,7 +31,7 @@
 
 <body class="">
 
-  {% include "site_template/sidebar.html" %}
+  
 
   <div class="main-content">
 
@@ -50,6 +50,16 @@
     
     <!-- Argon JS -->
     <script src="{{ url_for('static', filename='assets/js/argon-dashboard.min.js') }}"></script>
+    <script>
+      $(document).ready(function(){
+        console.log("INIT")
+        $('.nav-item .nav-link').click(function(){
+            $('.nav-link').removeClass('active');
+            $(this).addClass('active');
+            console.log("IN FUNCTION");
+        })
+      });
+    </script>
   {% endblock javascripts %}
 
 </body>

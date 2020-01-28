@@ -1,0 +1,54 @@
+{% extends "base_site.html" %}
+
+{% block title %} DETAILS {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block content %}
+
+  {% include "site_template/navigation.html" %}
+
+
+
+  <div class="container-fluid">
+    <form action="/enter_symptoms" method="post" action="">
+    {{form.hidden_tag()}}
+    <div class="col-xs-12 pt-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">{{ form.question_1.label }}<br></label>
+          {{form.question_1(placeholder="Enter your answer",class="form-control")}}
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+        <label for="exampleInputPassword1">{{ form.question_2.label }}</label>
+          {{form.question_2(placeholder="Enter your answer",class="form-control")}}
+        </div>
+        <div class="form-group">
+        <label for="exampleCheck1">{{ form.question_3.label }}</label>
+          {{form.question_3(placeholder="Enter your answer",class="form-control")}}
+        </div>
+        <div class="form-group">
+            <label for="exampleCheck1">{{ form.question_4.label }}</label>
+              {{form.question_4(placeholder="Enter your answer",class="form-control")}}
+        </div>
+        <div class="form-group">
+            <label for="exampleCheck1">{{ form.question_5.label }}</label>
+              {{form.question_5(placeholder="Enter your answer",class="form-control")}}
+        </div>
+        <div class="form-group">
+            <label for="exampleCheck1">{{ form.question_6.label }}</label>
+              {{form.question_6(placeholder="Enter your answer",class="form-control")}}
+        </div>
+        <button type="submit" name="questionnaire" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+  </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+  {{ super()}}
+{% endblock javascripts %}

@@ -8,8 +8,8 @@ from os import environ
 
 class Config(object):
     SECRET_KEY = 'key'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///main_database.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
     # THEME SUPPORT
     #  if set then url_for('static', filename='', theme='')

@@ -1,0 +1,43 @@
+{% extends "base_site.html" %}
+
+{% block title %} DETAILS {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block content %}
+
+{% include "site_template/navigation.html" %}
+
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card-body">
+          <div class="card shadow">
+              <div class="card-header border-0">
+                  <h1 class="mb-0">Patient Details</h1>
+                  <hr>
+                  <dl class="row">
+                    <dt class="col-sm-3">User Agent</dt>
+                    <dd class="col-sm-9">An HTML user agent is any device that interprets HTML documents.</dd>
+                    <dt class="col-sm-3 text-truncate">Client-side Scripting</dt>
+                    <dd class="col-sm-9">Client-side scripting generally refers to the category of computer programs on the web that are executed by the user's web browser.</dd>
+                    <dt class="col-sm-3">Document Tree</dt>
+                    <dd class="col-sm-9">The tree of elements encoded in the source document.</dd>
+                </dl>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    {% include "site_template/footer.html" %}
+
+  </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+  {{ super()}}
+{% endblock javascripts %}

@@ -5,18 +5,17 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from app.home import blueprint
-from flask import render_template, redirect, url_for , request
+from flask import render_template, redirect, url_for , request , session
 from flask_login import login_required, current_user
 from app import login_manager,db
 from jinja2 import TemplateNotFound
-from app.home.models import Patient
-from app.home.forms import CreatePatientForm
+from app.home.models import Patient , PatientVisitDetails ,Questionnaire
+from app.home.forms import CreatePatientForm,CreateVisitForm,QuestionnaireForm
 
 @blueprint.route('/index',methods=['GET','POST'])
 @login_required
 def index():
     msg = ""
-    print(request.form)
     create_patient_form = CreatePatientForm(request.form)
     if 'create_patient' in request.form:
         username = request.form['username']
@@ -35,9 +34,30 @@ def index():
     if not current_user.is_authenticated:
         return redirect(url_for('base_blueprint.login'))
     
-    patients = db.session.query(Patient)
+    patients = Patient.query.all()
 
     return render_template('index.html',form = create_patient_form,patients=patients,msg=msg)
+
+@login_required
+@blueprint.route('/patient_details',methods=['GET','POST'])
+def patient_details():
+    return render_template('patient_details.html')
+
+
+@login_required
+@blueprint.route('/medical_history',methods=['GET','POST'])
+def medical_history():
+    create_visit_form = CreateVisitForm(request.form)
+    visits = PatientVisitDetails.query.all()
+    return render_template('medical_history.html',visits=visits,form=create_visit_form)
+
+@login_required
+@blueprint.route('/enter_symptoms',methods=['GET','POST'])
+def enter_symptoms():
+    form = QuestionnaireForm(request.form)
+    if 'questionnaire' in form:
+        questionnaire = Questionnaire(**form)
+    return render_template('enter_symptoms.html',form=form)
 
 @blueprint.route('/<template>')
 def route_template(template):

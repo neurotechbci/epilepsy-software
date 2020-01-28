@@ -19,4 +19,4 @@ except KeyError:
     exit('Error: Invalid APPSEED_CONFIG_MODE environment variable entry.')
 
 app = create_app(config_mode) 
-Migrate(app, db)
+Migrate(app, db,render_as_batch=True)
