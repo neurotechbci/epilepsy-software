@@ -1,8 +1,8 @@
-"""Initial DB
+"""empty message
 
-Revision ID: b2dc8752ebfb
+Revision ID: 59ec11f4a192
 Revises: 
-Create Date: 2020-01-26 12:23:36.754193
+Create Date: 2020-01-29 02:41:46.623948
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b2dc8752ebfb'
+revision = '59ec11f4a192'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,24 +23,30 @@ def upgrade():
     sa.Column('username', sa.String(), nullable=True),
     sa.Column('age', sa.Integer(), nullable=True),
     sa.Column('visits', sa.Integer(), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('username')
+    sa.PrimaryKeyConstraint('id', name=op.f('pk_Patient')),
+    sa.UniqueConstraint('username', name=op.f('uq_Patient_username'))
     )
     op.create_table('PatientVisitDetails',
     sa.Column('visit_id', sa.Integer(), nullable=False),
     sa.Column('patient_id', sa.Integer(), nullable=True),
     sa.Column('date_time', sa.DateTime(), nullable=True),
     sa.Column('doctor_id', sa.Integer(), nullable=True),
-    sa.PrimaryKeyConstraint('visit_id')
+    sa.Column('question_1', sa.String(), nullable=False),
+    sa.Column('question_2', sa.String(), nullable=False),
+    sa.Column('question_3', sa.String(), nullable=False),
+    sa.Column('question_4', sa.String(), nullable=False),
+    sa.Column('question_5', sa.String(), nullable=False),
+    sa.Column('question_6', sa.String(), nullable=False),
+    sa.PrimaryKeyConstraint('visit_id', name=op.f('pk_PatientVisitDetails'))
     )
     op.create_table('User',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(), nullable=True),
     sa.Column('email', sa.String(), nullable=True),
     sa.Column('password', sa.Binary(), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('username')
+    sa.PrimaryKeyConstraint('id', name=op.f('pk_User')),
+    sa.UniqueConstraint('email', name=op.f('uq_User_email')),
+    sa.UniqueConstraint('username', name=op.f('uq_User_username'))
     )
     # ### end Alembic commands ###
 

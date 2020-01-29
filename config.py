@@ -8,7 +8,7 @@ from os import environ
 
 class Config(object):
     SECRET_KEY = 'key'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///main_database.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///test1.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
     # THEME SUPPORT

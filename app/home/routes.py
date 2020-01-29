@@ -9,7 +9,7 @@ from flask import render_template, redirect, url_for , request , session
 from flask_login import login_required, current_user
 from app import login_manager,db
 from jinja2 import TemplateNotFound
-from app.home.models import Patient , PatientVisitDetails ,Questionnaire
+from app.home.models import Patient , PatientVisitDetails
 from app.home.forms import CreatePatientForm,CreateVisitForm,QuestionnaireForm
 
 @blueprint.route('/index',methods=['GET','POST'])
@@ -55,8 +55,10 @@ def medical_history():
 @blueprint.route('/enter_symptoms',methods=['GET','POST'])
 def enter_symptoms():
     form = QuestionnaireForm(request.form)
-    if 'questionnaire' in form:
-        questionnaire = Questionnaire(**form)
+    if 'questionnaire' in request.form:
+        questionnaire = PatientVisitDetails(**request.form,patient_id=1)
+        db.session.add(questionnaire)
+        db.session.commit()
     return render_template('enter_symptoms.html',form=form)
 
 @blueprint.route('/<template>')

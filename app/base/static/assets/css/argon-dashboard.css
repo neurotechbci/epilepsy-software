@@ -6213,7 +6213,7 @@ button.close {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
+    max-width: 800px;
     margin: 1.75rem auto;
   }
 
@@ -6693,7 +6693,7 @@ button.close {
   align-items: center;
   justify-content: center;
   width: 15%;
-  color: #fff;
+  color: #000;
   text-align: center;
   opacity: 0.5;
 }
@@ -6721,7 +6721,7 @@ button.close {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: transparent no-repeat center center;
+  background: #000000 no-repeat center center;
   background-size: 100% 100%;
 }
 
